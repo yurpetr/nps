@@ -31,3 +31,9 @@ build/
 
 ### VS Code ###
 .vscode/
+/mybase.db
+/mydb.mv.db
+/mydb.trace.db
+/npsdb.mv.db
+/npstl.jks
+/npstl.p12
