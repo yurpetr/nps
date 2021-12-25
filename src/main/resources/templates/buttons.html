@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<body>
+	<button th:fragment="button(number, point)" type="button"
+		th:data-number="${number}" th:data-point="|${point}|"
+		th:onclick="|window.location.href='/justdoit?id='+this.getAttribute('data-number')+'&point='+this.getAttribute('data-point')|"
+		class="digitalButton text-center inline-flex justify-center py-0 mx-1 border-2 rounded-xl shadow-2xl tracking-tighter
+		hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500
+		bg-gradient-to-tr from-darkred-dark to-darkred-light">
+		[[${number}]]</button>
+</body>
+</html>

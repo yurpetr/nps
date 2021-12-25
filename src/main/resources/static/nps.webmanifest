@@ -1,0 +1,16 @@
+{
+    "name": "Trade-Liga NPS",
+    "short_name": "NPS",
+    "icons": [
+        {
+            "src": "/images/star.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#ffffff",
+    "background_color": "#76bbe3",
+    "display": "fullscreen",
+    "start_url": "./",
+	"scope": "."
+}

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="uk">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="/css/application.css" />
+<link rel="manifest" href="/nps.webmanifest">
+<title>NPS</title>
+</head>
+<body style="margin: 0">
+	<div class="flex h-screen justify-center items-center">
+		<div
+			class="bg-yellow-900 overflow-hidden border-t border-l border-r border-gray-400 p-4 px-3 py-10 bg-gray-200 flex justify-center">
+			<div class="w-full max-w-max">
+				<div id="box1"
+					class="bg-yellow-600 shadow-md rounded px-2 py-6 my-2">
+					<h1 class="callToRating text-center mb-3">Оцінка Магазину</h1>
+					<div class="flex-1 justify-center">
+						<button th:replace="buttons :: button(1,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(2,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(3,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(4,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(5,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(6,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(7,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(8,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(9,${pointOfSale})"></button>
+						<button th:replace="buttons :: button(10,${pointOfSale})"></button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<hr>
+	<a style="margin: 0 auto; display: block; text-align: center"
+		th:href="@{/logoutpage}" th:text="Logout">Logout</a>
+</body>
+</html>

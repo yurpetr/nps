@@ -1,0 +1,12 @@
+package com.yurpetr.javastream;
+
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class JavaBitrix24ApiApplication {
+
+//	public static void main(String[] args) {
+//		SpringApplication.run(JavaBitrix24ApiApplication.class, args);
+//	}
+
+}
