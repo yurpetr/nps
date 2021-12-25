@@ -1,14 +1,14 @@
 {
-  "name": "buttons-test",
+  "name": "nps",
   "scripts": {
     "watch": "gulp watch",
     "build": "gulp build",
     "build-prod": "NODE_ENV='production' gulp build --env production"
   },
   "devDependencies": {
-    "@babel/core": "^7.16.0",
-    "@babel/preset-env": "^7.16.0",
-    "autoprefixer": "^10.4.0",
+    "@babel/core": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "@fullhuman/postcss-purgecss": "^4.1.3",
     "browser-sync": "^2.27.7",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
@@ -17,10 +17,15 @@
     "gulp-purgecss": "^4.0.3",
     "gulp-terser": "^2.1.0",
     "gulp-uglifycss": "^1.1.0",
-    "gulp-watch": "^5.0.1"
+    "gulp-watch": "^5.0.1",
+    "postcss-cli": "^9.1.0",
+    "tailwindcss": "^2.2.19"
   },
   "dependencies": {
     "@tailwindcss/forms": "^0.3.4",
-    "tailwindcss": "^2.2.19"
+    "autoprefixer": "^10.4.0",
+    "cssnano": "^5.0.14",
+    "postcss": "^8.4.5",
+    "gulp-cli": "^2.3.0"
   }
 }

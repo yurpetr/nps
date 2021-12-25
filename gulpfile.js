@@ -17,23 +17,28 @@ gulp.task('watch', () => {
 	gulp.watch(['src/main/resources/**/*.png'], gulp.series('copy-png-and-reload'));
 });
 
-gulp.task('copy-html', () => gulp.src(['src/main/resources/**/*.html'])
-	.pipe(gulp.dest('target/classes/')));
-gulp.task('copy-png', () => gulp.src(['src/main/resources/**/*.png'])
-	.pipe(gulp.dest('target/classes/')));
-gulp.task('copy-css', () => gulp.src(['src/main/resources/**/*.css'])
-	.pipe(postcss([
-		require('tailwindcss'),
-		require('autoprefixer'),
-	]))
-	.pipe(production(purgecss({
-		content: ['src/main/resources/templates/**/*.html']
-	})))
-	.pipe(production(uglifycss()))
-	.pipe(gulp.dest('target/classes/')));
-gulp.task('copy-js', () => gulp.src(['src/main/resources/**/*.js'])
-	.pipe(babel()).pipe(production(terser()))
-	.pipe(gulp.dest('target/classes/')));
+gulp.task('copy-html', () =>
+	gulp.src(['src/main/resources/**/*.html'])
+		.pipe(gulp.dest('target/classes/'))
+);
+
+gulp.task('copy-png', () => 
+	gulp.src(['src/main/resources/**/*.png'])
+		.pipe(gulp.dest('target/classes/')));
+	
+gulp.task('copy-css', () =>
+	gulp.src(['src/main/resources/**/*.css'])
+		.pipe(postcss())
+		.pipe(production(uglifycss()))
+		.pipe(gulp.dest('target/classes/'))
+);
+
+gulp.task('copy-js', () =>
+	gulp.src(['src/main/resources/**/*.js'])
+		.pipe(babel())
+		.pipe(production(terser()))
+		.pipe(gulp.dest('target/classes/'))
+);
 
 gulp.task('copy-html-and-reload', gulp.series('copy-html', reload));
 gulp.task('copy-css-and-reload', gulp.series('copy-css', reload));
