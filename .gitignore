@@ -38,3 +38,5 @@ build/
 /npstl.jks
 /npstl.p12
 /node/
+/node_modules/
+
