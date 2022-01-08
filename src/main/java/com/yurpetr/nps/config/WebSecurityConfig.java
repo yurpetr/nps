@@ -29,6 +29,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
          "/css/**",
          "/fonts/**",
          "/js/**",
+         "/webjars/**",
          "/nps.webmanifest"
    };
    private static final String[] POST_PUBLIC_URLS = {

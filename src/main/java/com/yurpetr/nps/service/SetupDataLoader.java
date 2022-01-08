@@ -38,6 +38,8 @@ public class SetupDataLoader implements ApplicationListener<ContextRefreshedEven
 			return;
 		createRoleIfNotFound("ROLE_ADMIN");
 		createRoleIfNotFound("ROLE_USER");
+		createRoleIfNotFound("ROLE_POWERBI");
+		
 
 		if (!userRepository.findByLogin("admin").isPresent()) {
 			Role adminRole = roleRepository.findByName("ROLE_ADMIN").get();

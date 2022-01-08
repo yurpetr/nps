@@ -16,14 +16,14 @@
          <div>
             <h2
                class="mt-6 text-center text-3xl font-extrabold text-gray-900"
-            >Додати нового користувача</h2>
+            >Редагувати користувача</h2>
          </div>
          <hr />
          <form
             class="mt-8 space-y-6"
             th:object="${user}"
-            th:action="@{/users/create}"
-            method="POST"
+            th:action="@{'/users/update/' + *{id}}"
+            method="post"
          >
             <div
                class="relative border border-gray-300 rounded-md px-3 py-2 shadow-sm focus-within:ring-1 focus-within:ring-blue-600 focus-within:border-blue-600"
@@ -87,28 +87,13 @@
                   placeholder="Введіть посилання"
                >
             </div>
-            <!--             <select id="role" required th:field="*{role}">
-            <option value="" hidden>Select a role</option>
-            <option value="GUEST" hidden>GUEST</option>
-            <option value="USER" hidden>USER</option>
-            <option value="ADMIN" hidden>ADMIN</option>
-            </select> -->
             <div class="space-y-5">
                <div class="relative flex items-center">
                   <div
                      class="flex items-center h-5"
-                     th:each="role : ${user.roles}"
+                     th:each="role : ${roles}"
                   >
-                     <!--                                                                <input
-                        th:type="radio"
-                        name="roles"
-                        th:text="${role.name == 'ROLE_ADMIN' ? 'Адміністратор' : 'Користувач'}"
-                        th:checked="${role.name != 'ROLE_ADMIN'}"
-                        th:value="${role.id}"
-                        th:field="*{roles}"
-                        class="focus:ring-blue-500 ml-5 mr-1 h-4 w-4 text-blue-600 border-gray-300 rounded"
-                     > -->
-                                          <th:block th:switch="${role.name}">
+                     <th:block th:switch="${role.name}">
                         <input
                            th:case="'ROLE_USER'"
                            th:type="radio"
@@ -116,7 +101,6 @@
                            th:text="'Користувач'"
                            th:value="${role.id}"
                            class="focus:ring-blue-500 ml-5 mr-1 h-4 w-4 text-blue-600 border-gray-300 rounded"
-                           checked="checked"
                         >
                         <input
                            th:case="'ROLE_POWERBI'"

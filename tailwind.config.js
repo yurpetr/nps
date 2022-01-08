@@ -19,6 +19,9 @@ module.exports = {
 					dark: '#6f001f',
 				}
 			}
+		},
+		container: {
+			center: true,
 		}
 	},
 	variants: {

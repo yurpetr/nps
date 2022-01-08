@@ -1,0 +1,57 @@
+/* purgecss start ignore */
+@tailwind base;
+@tailwind components;
+/* purgecss end ignore */
+@tailwind utilities;
+
+@font-face {
+	font-family: buttonFont;
+	src: url(/fonts/bold.woff2);
+	font-style: normal;
+}
+
+@font-face {
+	font-family: textFont;
+	src: url(/fonts/regular.woff2);
+	font-style: normal;
+}
+
+#box1 { --tw-text-opacity: 1;
+	color: rgba(255, 255, 255, var(--tw-text-opacity));
+}
+
+.bgimage {
+	background-image: url('../img/bg.jpg');
+	background-repeat: no-repeat;
+	background-attachment: fixed;
+	background-size: 100% 100%;
+}
+
+.callToRating {
+	font-family: textFont;
+	letter-spacing: 0.05em;
+	font-size: 95px;
+	font-weight: 100;
+	text-shadow: 10px 6px 13px rgba(0,0,0,0.3);
+}
+
+.thanks {
+	font-family: textFont;
+	letter-spacing: 0.05em;
+	font-size: 95px;
+	font-weight: 100;
+	text-shadow: 10px 6px 13px rgba(0,0,0,0.3);
+}
+
+.digitalButton {
+	font-family: buttonFont;
+	font-weight: 600;
+	font-size: 85px;
+	/* text-shadow: 0 0 10px rgba(0,0,0,0.9); */
+	text-shadow: 0 0 10px rgba(230, 73, 21, 1);
+	width: 95px; 
+	--tw-border-opacity: 1;
+	border-color: rgba(254, 104, 14, var(--tw-border-opacity));
+	-webkit-box-shadow: 5px 5px 18px 8px rgba(0, 0, 0, 0.3);
+	box-shadow: 5px 5px 18px 8px rgba(0, 0, 0, 0.3);
+}

@@ -34,6 +34,8 @@ public class User implements Serializable {
 	@NotEmpty(message = "Точка продаж")
 	@Column(nullable = false)
 	private String pointOfSale;
+		
+	private String powerBiUrl;
 
 	@ManyToMany
 	@JoinTable(name = "nps_users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
