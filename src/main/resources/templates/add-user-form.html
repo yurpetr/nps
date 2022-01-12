@@ -87,28 +87,13 @@
                   placeholder="Введіть посилання"
                >
             </div>
-            <!--             <select id="role" required th:field="*{role}">
-            <option value="" hidden>Select a role</option>
-            <option value="GUEST" hidden>GUEST</option>
-            <option value="USER" hidden>USER</option>
-            <option value="ADMIN" hidden>ADMIN</option>
-            </select> -->
             <div class="space-y-5">
                <div class="relative flex items-center">
                   <div
                      class="flex items-center h-5"
                      th:each="role : ${user.roles}"
                   >
-                     <!--                                                                <input
-                        th:type="radio"
-                        name="roles"
-                        th:text="${role.name == 'ROLE_ADMIN' ? 'Адміністратор' : 'Користувач'}"
-                        th:checked="${role.name != 'ROLE_ADMIN'}"
-                        th:value="${role.id}"
-                        th:field="*{roles}"
-                        class="focus:ring-blue-500 ml-5 mr-1 h-4 w-4 text-blue-600 border-gray-300 rounded"
-                     > -->
-                                          <th:block th:switch="${role.name}">
+                     <th:block th:switch="${role.name}">
                         <input
                            th:case="'ROLE_USER'"
                            th:type="radio"
