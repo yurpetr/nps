@@ -86,7 +86,8 @@ public class TableController {
             .orElseThrow(() -> new UserNotFoundException(
                   "Пользователь " + id + " не найден!"));
       usr.setLogin(usrU.getLogin());
-      usr.setPassword(usrU.getPassword());
+      if ((usrU.getPassword() != "") && (usrU.getPassword() != null))
+         usr.setPassword(usrU.getPassword());
       usr.setPointOfSale(usrU.getPointOfSale());
       usr.setPowerBiUrl(usrU.getPowerBiUrl());
       usr.setRoles(usrU.getRoles());
