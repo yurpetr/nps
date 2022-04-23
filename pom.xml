@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.6.1</version>
+		<version>2.6.6</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.13-RC</version>
+	<version>0.0.14-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
@@ -22,7 +22,7 @@
 		<frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
 		<frontend-maven-plugin.nodeVersion>v14.18.1</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>6.14.15</frontend-maven-plugin.npmVersion>
-		<log4j2.version>2.17.0</log4j2.version>
+		<log4j2.version>2.17.2</log4j2.version>
 	</properties>
 	<repositories>
 		<repository>
