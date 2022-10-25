@@ -1,26 +1,14 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org" lang="uk">
 <body>
-   <form
-      th:fragment="input(number, point)"
-      action="#"
-      th:action="@{/justdoit}"
-      method="post"
-   >
-      <input
-         type="hidden"
-         th:attr="name='pos'"
-         th:value="${point}"
-      > <input
-         type="hidden"
-         th:attr="name='id'"
-         th:value="${number}"
-      > <input
-         type="submit"
-         th:value="${number}"
-         class="digitalButton text-center inline-flex justify-center py-0 border-2 rounded-xl shadow-2xl tracking-tighter
-         leading-none bg-gradient-to-tr from-darkred-dark to-darkred-light"
-      >
-   </form>
+	<form th:fragment="input(number, point)" action="#"
+		th:action="@{/justdoit}" method="post">
+		<input type="hidden" th:attr="name='pos'" th:value="${point}">
+		<input type="hidden" th:attr="name='id'" th:value="${number}">
+		<input type="submit" th:value="${number}"
+			class="digitalButton text-center inline-flex justify-center py-0 border-2 rounded-xl shadow-2xl tracking-tighter
+         leading-none bg-gradient-to-tr from-darkred-dark to-darkred-light">
+	</form>
 </body>
 </html>

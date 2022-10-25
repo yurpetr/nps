@@ -76,7 +76,7 @@ public class HomeController {
          @RequestParam("id") String id,
          @RequestParam("pos") String point) {
       CreateLeadService service = new CreateLeadService();
-      service.createLead(id, point);
+//      service.createLead(id, point);
       System.out.println("Success");
       System.out.println("Button pressed: " + id);
       System.out.println("Point of sale: " + point);

@@ -37,6 +37,5 @@ build/
 /npsdb.mv.db
 /npstl.jks
 /npstl.p12
-/node/
 /node_modules/
-
+/node/
