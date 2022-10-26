@@ -1,2 +1,11 @@
 Lenovo P11
 Browser Window Size			1334x800 pixels
+
+
+build
+mvn versions:display-dependency-updates
+
+npm install
+npm run build && npm run watch
+
+mvn clean package -Prelease
