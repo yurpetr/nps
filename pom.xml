@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.15-RC</version>
+	<version>0.0.16-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
@@ -52,16 +52,6 @@
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf.extras</groupId>
-			<artifactId>thymeleaf-extras-springsecurity5</artifactId>
-			<version>3.1.0.RC2</version> <!--$NO-MVN-MAN-VER$-->
-		</dependency>
-		<dependency>
-			<groupId>org.thymeleaf</groupId>
-			<artifactId>thymeleaf</artifactId>
-			<version>3.1.0.RC2</version><!--$NO-MVN-MAN-VER$-->
 		</dependency>
 		<!-- Add tomcat only if I want to run directly -->
 		<dependency>
