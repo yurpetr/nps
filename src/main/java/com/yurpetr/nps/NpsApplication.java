@@ -25,20 +25,20 @@ public class NpsApplication extends SpringBootServletInitializer {
 
    }
 
-   /**
-    * Start internal H2 server so we can query the DB from IDE
-    *
-    * @return H2 Server instance
-    * @throws SQLException
+    /**
+     * Start internal H2 server so we can query the DB from IDE
+     *
+     * @return H2 Server instance
+     * @throws SQLException
     */
-   @Bean(initMethod = "start", destroyMethod = "stop")
-   public Server h2Server() throws SQLException {
+    @Bean(initMethod = "start", destroyMethod = "stop")
+    Server h2Server() throws SQLException {
       return Server.createTcpServer("-tcp", "-tcpAllowOthers", "-tcpPort",
             "9092");
    }
 
-   @Bean
-   public PasswordEncoder passwordEncoder() {
+    @Bean
+    PasswordEncoder passwordEncoder() {
       return new BCryptPasswordEncoder();
    }
 

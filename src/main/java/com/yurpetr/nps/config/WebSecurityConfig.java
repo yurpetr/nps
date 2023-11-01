@@ -48,25 +48,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
    @Override
    protected void configure(HttpSecurity http) throws Exception {
-      http
-            .authorizeRequests()
-            .antMatchers("/h2/**").permitAll()
-            .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
-            .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
-            .antMatchers("/admin**").hasAnyRole("ADMIN")
-            .anyRequest().authenticated()
-            .and()
-            .formLogin().loginPage("/login").permitAll()
-            .defaultSuccessUrl("/")
-            .failureUrl("/login?error=true")
-            .and()
-            .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .permitAll()
-            .logoutSuccessUrl("/")
-            .and()
-            .rememberMe().tokenRepository(persistentTokenRepository());
-      http.csrf().ignoringAntMatchers("/h2/**");
-      http.headers().frameOptions().sameOrigin();
+       http
+               .authorizeRequests(requests -> requests
+                       .antMatchers("/h2/**").permitAll()
+                       .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
+                       .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
+                       .antMatchers("/admin**").hasAnyRole("ADMIN")
+                       .anyRequest().authenticated())
+               .formLogin(login -> login.loginPage("/login").permitAll()
+                       .defaultSuccessUrl("/")
+                       .failureUrl("/login?error=true"))
+               .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+                       .permitAll()
+                       .logoutSuccessUrl("/"))
+               .rememberMe(me -> me.tokenRepository(persistentTokenRepository()));
+       http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
+       http.headers(headers -> headers.frameOptions().sameOrigin());
 
    }
 
@@ -75,8 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
       return new BCryptPasswordEncoder();
    }
 
-   @Bean
-   public DaoAuthenticationProvider daoAuthenticationProvider() {
+    @Bean
+    DaoAuthenticationProvider daoAuthenticationProvider() {
       DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
       authenticationProvider.setPasswordEncoder(passwordEncoder());
       authenticationProvider.setUserDetailsService(userService);
@@ -86,8 +83,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    @Autowired
    private DataSource dataSource;
 
-   @Bean
-   public PersistentTokenRepository persistentTokenRepository() {
+    @Bean
+    PersistentTokenRepository persistentTokenRepository() {
       JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
       tokenRepo.setDataSource(dataSource);
       return tokenRepo;

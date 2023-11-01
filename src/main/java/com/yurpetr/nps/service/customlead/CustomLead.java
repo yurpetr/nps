@@ -18,15 +18,15 @@ public class CustomLead extends Lead {
    private String UF_CRM_1636842898;
    private String UF_CRM_1636848516;
 
-   public void add_opinion(String opinion) {
+   public void setOpinion(String opinion) {
       this.UF_CRM_1636842898 = opinion;
    }
 
-   public void add_point(String point) {
+   public void setPoint(String point) {
       this.UF_CRM_1636848516 = point;
    }
 
-   public void add_responsible(String responsible) {
+   public void setResponsible(String responsible) {
       this.setASSIGNED_BY_ID(responsible);
    }
 
