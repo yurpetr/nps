@@ -38,7 +38,7 @@ mvn clean install spring-boot:run
 For build and run docker:
 
 ```
-mvn package -Dmaven.test.skip
+mvn clean verify
 cp ../target/nps-{version}.war.original ./ROOT.war
 tar -czh . | docker compose up -d
 ```
