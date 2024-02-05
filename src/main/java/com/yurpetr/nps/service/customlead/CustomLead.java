@@ -1,8 +1,3 @@
-/**
- * Файл создан Юркой Петровым на его компе Nov 14, 2021 и это часть
- * проекта crm
- */
-
 package com.yurpetr.nps.service.customlead;
 
 import com.javastream.entity.Lead;

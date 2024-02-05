@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.19-RC</version>
+	<version>0.0.20-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
@@ -66,7 +66,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<!--			<version>1.18.30</version>-->
 			<scope>provided</scope>
 		</dependency>
 		<dependency>
@@ -98,9 +97,8 @@
 		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
-			<version>2.10.1</version> <!--$NO-MVN-MAN-VER$-->
+			<version>2.10.1</version>
 		</dependency>
-		<!-- json -->
 		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
@@ -109,27 +107,18 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-osgi</artifactId>
-			<!-- httpcomponents <version>4.5.1</version> -->
 		</dependency>
-		<!-- apache.commons -->
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
 			<version>3.14.0</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
-		<!-- <dependency> <groupId>org.xerial</groupId>
-		<artifactId>sqlite-jdbc</artifactId> 
-			</dependency> -->
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
 			<version>2.2.224</version>
 			<!-- <scope>runtime</scope> -->
 		</dependency>
-		<!-- <dependency> <groupId>com.github.gwenn</groupId>
-		<artifactId>sqlite-dialect</artifactId> 
-			<version>0.1.2</version> </dependency> -->
 	</dependencies>
 	<build>
 		<resources>

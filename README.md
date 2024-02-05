@@ -38,9 +38,11 @@ mvn clean install spring-boot:run
 For build and run docker:
 
 ```
-mvn clean verify
+npm install
+mvn clean verify   OR   mvn clean package -Prelease
 cp ../target/nps-{version}.war.original ./ROOT.war
-tar -czh . | docker compose up -d
+tar -czh . | docker build -t npsapp -
+docker compose up -d
 ```
 
 Copy cert files into docker container (optional):

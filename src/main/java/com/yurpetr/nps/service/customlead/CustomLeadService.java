@@ -1,8 +1,3 @@
-/**
- * Файл создан Юркой Петровым на его компе Nov 14, 2021 и это часть
- * проекта crm
- */
-
 package com.yurpetr.nps.service.customlead;
 
 
@@ -19,9 +14,6 @@ public class CustomLeadService extends LeadService {
          .getLogger(CustomLeadService.class);
 
    private final static String ADD_METHOD = "crm.lead.add.json";
-   // private final static String GET_METHOD = "crm.lead.get";
-   // private final static String DELETE_METHOD = "crm.lead.delete";
-   // private final static String UPDATE_METHOD = "crm.lead.update";
 
    public void addNewLead(CustomLead lead) {
       logger.info("Request: Add a new lead: {}", lead.getTitle());

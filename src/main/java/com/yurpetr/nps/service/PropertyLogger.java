@@ -1,8 +1,3 @@
-/**
- * Файл создан Юркой Петровым на его компе Feb 5, 2024 и это часть
- * проекта nps
- */
-
 package com.yurpetr.nps.service;
 
 import java.util.Arrays;
