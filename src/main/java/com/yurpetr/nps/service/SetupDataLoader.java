@@ -26,10 +26,6 @@ public class SetupDataLoader
    @Autowired
    private RolesRepository roleRepository;
 
-   /*
-    * @Autowired private PasswordEncoder passwordEncoder;
-    */
-
    @Override
    @Transactional
    public void onApplicationEvent(ContextRefreshedEvent event) {
@@ -51,15 +47,6 @@ public class SetupDataLoader
          user.setRoles(Arrays.asList(adminRole));
          userRepository.save(user);
       }
-      /*
-       * if (!userRepository.findByLogin("user").isPresent()) { Role
-       * userRole = roleRepository.findByName("ROLE_USER").get(); User
-       * test = new User(); test.setLogin("user"); test.setPassword(
-       * "$2a$12$pV85f1gXDLjP/vZBJVVBH.pysDGmroFgIgfdB3zNazSDwWeprnt0G"
-       * ); test.setPointOfSale("test");
-       * test.setRoles(Arrays.asList(userRole));
-       * userRepository.save(test); }
-       */
       alreadySetup = true;
 
    }

@@ -11,7 +11,6 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -22,62 +21,50 @@ import com.yurpetr.nps.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-   private static final String[] GET_PUBLIC_URLS = {
-         "/login",
-         "/css/**",
-         "/fonts/**",
-         "/js/**",
-         "/webjars/**",
-         "/nps.webmanifest"
-   };
-   private static final String[] POST_PUBLIC_URLS = {
-         "/home",
-         "/logout",
-         "/logoutpage",
-         "/password_reset"
-   };
+   private static final String[] GET_PUBLIC_URLS = { "/login",
+         "/css/**", "/fonts/**", "/js/**", "/webjars/**",
+         "/nps.webmanifest" };
+   private static final String[] POST_PUBLIC_URLS = { "/home",
+         "/logout", "/logoutpage", "/password_reset" };
 
    @Autowired
    private UserDetailsService userService;
 
-   public void setUserService(UserServiceImpl userService) {
+   public void setUserService(UserDetailsService userService) {
       this.userService = userService;
    }
 
    @Override
    protected void configure(HttpSecurity http) throws Exception {
-       http
-               .authorizeRequests(requests -> requests
-                       .antMatchers("/h2/**").permitAll()
-                       .antMatchers("/h2-console/**").permitAll()
-                       .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
-                       .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
-                       .antMatchers("/admin**").hasAnyRole("ADMIN")
-                       .anyRequest().authenticated())
-               .formLogin(login -> login.loginPage("/login").permitAll()
-                       .defaultSuccessUrl("/")
-                       .failureUrl("/login?error=true"))
-               .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                       .permitAll()
-                       .logoutSuccessUrl("/"))
-               .rememberMe(me -> me.tokenRepository(persistentTokenRepository()))
-       ;
-       http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
-       http.headers(headers -> headers.frameOptions().sameOrigin());
+      http.authorizeRequests(requests -> requests
+            .antMatchers("/h2/**").permitAll()
+            .antMatchers("/h2-console/**").permitAll()
+            .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
+            .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS)
+            .permitAll().antMatchers("/admin**").hasAnyRole("ADMIN")
+            .anyRequest().authenticated())
+            .formLogin(login -> login.loginPage("/login").permitAll()
+                  .defaultSuccessUrl("/")
+                  .failureUrl("/login?error=true"))
+            .logout(logout -> logout
+                  .logoutRequestMatcher(
+                        new AntPathRequestMatcher("/logout"))
+                  .permitAll().logoutSuccessUrl("/"))
+            .rememberMe(me -> me
+                  .tokenRepository(persistentTokenRepository()));
+      http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
+      http.headers(headers -> headers.frameOptions().sameOrigin());
 
    }
 
    @Autowired
-   public PasswordEncoder passwordEncoder() {
-      return new BCryptPasswordEncoder();
-   }
+   private PasswordEncoder passwordEncoder;
 
-    @Bean
-    DaoAuthenticationProvider daoAuthenticationProvider() {
+   @Bean
+   DaoAuthenticationProvider daoAuthenticationProvider() {
       DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-      authenticationProvider.setPasswordEncoder(passwordEncoder());
+      authenticationProvider.setPasswordEncoder(passwordEncoder);
       authenticationProvider.setUserDetailsService(userService);
       return authenticationProvider;
    }
@@ -85,8 +72,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    @Autowired
    private DataSource dataSource;
 
-    @Bean
-    PersistentTokenRepository persistentTokenRepository() {
+   @Bean
+   PersistentTokenRepository persistentTokenRepository() {
       JdbcTokenRepositoryImpl tokenRepo = new JdbcTokenRepositoryImpl();
       tokenRepo.setDataSource(dataSource);
       return tokenRepo;
@@ -96,7 +83,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    private UsersRepository usersRepository;
 
    @Bean
-   public UserDetailsService userDetailsService() {
+   protected UserDetailsService userDetailsService() {
       return new UserServiceImpl(usersRepository);
    }
 

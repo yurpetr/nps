@@ -24,6 +24,7 @@ public class HomeController {
 
    private static final Logger LOGGER = LoggerFactory
          .getLogger(HomeController.class);
+  
    @Autowired
    UsersService usersService;
 
