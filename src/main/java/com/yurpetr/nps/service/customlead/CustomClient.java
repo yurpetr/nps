@@ -8,13 +8,14 @@ package com.yurpetr.nps.service.customlead;
 import com.javastream.Client;
 
 public class CustomClient extends Client {
+   private final CustomLeadService leadService = new CustomLeadService();
 
    public CustomClient(String token, String account,
          Integer rest_ID) {
       super(token, account, rest_ID);
    }
 
-   public CustomLeadService getLeadService() {
-      return new CustomLeadService();
+   public CustomLeadService customLeadService() {
+      return leadService;
    }
 }

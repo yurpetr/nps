@@ -51,6 +51,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
        http
                .authorizeRequests(requests -> requests
                        .antMatchers("/h2/**").permitAll()
+                       .antMatchers("/h2-console/**").permitAll()
                        .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
                        .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
                        .antMatchers("/admin**").hasAnyRole("ADMIN")
@@ -61,7 +62,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                .logout(logout -> logout.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                        .permitAll()
                        .logoutSuccessUrl("/"))
-               .rememberMe(me -> me.tokenRepository(persistentTokenRepository()));
+               .rememberMe(me -> me.tokenRepository(persistentTokenRepository()))
+       ;
        http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
        http.headers(headers -> headers.frameOptions().sameOrigin());
 

@@ -2,6 +2,8 @@ package com.yurpetr.nps.controller;
 
 import java.security.Principal;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,30 +21,36 @@ import com.yurpetr.nps.service.UsersService;
 @Controller
 @RequestMapping("/")
 public class HomeController {
+
+   private static final Logger LOGGER = LoggerFactory
+         .getLogger(HomeController.class);
    @Autowired
    UsersService usersService;
 
    @GetMapping
    public ModelAndView home(Principal principal) {
       if (principal != null) {
-         Authentication authentication = SecurityContextHolder.getContext()
-               .getAuthentication();
-         if (authentication.getAuthorities().stream()
-               .anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
-            ModelAndView mav = new ModelAndView(new RedirectView("/admin"));
+         Authentication authentication = SecurityContextHolder
+               .getContext().getAuthentication();
+         if (authentication.getAuthorities().stream().anyMatch(
+               r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+            ModelAndView mav = new ModelAndView(
+                  new RedirectView("/admin"));
             return mav;
          }
-         if (authentication.getAuthorities().stream()
-               .anyMatch(r -> r.getAuthority().equals("ROLE_POWERBI"))) {
+         if (authentication.getAuthorities().stream().anyMatch(
+               r -> r.getAuthority().equals("ROLE_POWERBI"))) {
             ModelAndView mav = new ModelAndView("powerbi");
-            mav.addObject("url", usersService
-                  .findByLogin(authentication.getName()).get().getPowerBiUrl());
+            mav.addObject("url",
+                  usersService.findByLogin(authentication.getName())
+                        .get().getPowerBiUrl());
             return mav;
          }
 
          ModelAndView mav = new ModelAndView("nps");
-         mav.addObject("pos", usersService
-               .findByLogin(authentication.getName()).get().getPointOfSale());
+         mav.addObject("pos",
+               usersService.findByLogin(authentication.getName())
+                     .get().getPointOfSale());
          return mav;
 
       }
@@ -59,27 +67,26 @@ public class HomeController {
    }
 
    /*
-    * @RequestMapping(value = "/justdoit") public String doStuffMethod(
-    * 
+    * @RequestMapping(value = "/justdoit") public String
+    * doStuffMethod(
     * @RequestParam(value = "id", required = false) String id,
-    * 
-    * @RequestParam(value = "point", required = false) String point) { //
-    * CreateLeadService service = new CreateLeadService(); //
+    * @RequestParam(value = "point", required = false) String point) {
+    * // CreateLeadService service = new CreateLeadService(); //
     * service.createLead(id, point); System.out.println("Success");
     * System.out.println("Button pressed: " + id);
-    * System.out.println("Point of sale: " + point); return "congrats"; //
-    * return "redirect:/"; }
+    * System.out.println("Point of sale: " + point); return
+    * "congrats"; // return "redirect:/"; }
     */
 
    @PostMapping("/justdoit")
-   public String doStuffMethod(
-         @RequestParam("id") String id,
+   public String doStuffMethod(@RequestParam("id") String id,
          @RequestParam("pos") String point) {
       CreateLeadService service = new CreateLeadService();
-//      service.createLead(id, point);
-      System.out.println("Success");
-      System.out.println("Button pressed: " + id);
-      System.out.println("Point of sale: " + point);
+      service.createLead(id, point);
+      LOGGER.info("Success");
+      LOGGER.info("Button pressed: " + id);
+      LOGGER.info("Point of sale: " + point);
+
       return "congrats";
       // return "redirect:/";
    }

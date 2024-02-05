@@ -11,16 +11,16 @@
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.17-RC</version>
+	<version>0.0.18-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>21</java.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<frontend-maven-plugin.version>1.12.0</frontend-maven-plugin.version>
 		<frontend-maven-plugin.nodeVersion>v14.18.1</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>6.14.15</frontend-maven-plugin.npmVersion>
-		<log4j2.version>2.21.1</log4j2.version>
+		<log4j2.version>2.22.1</log4j2.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -115,6 +115,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
+			<version>3.14.0</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.xerial/sqlite-jdbc -->
 		<!-- <dependency> <groupId>org.xerial</groupId>
@@ -123,6 +124,7 @@
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<version>2.2.224</version>
 			<!-- <scope>runtime</scope> -->
 		</dependency>
 		<!-- <dependency> <groupId>com.github.gwenn</groupId>

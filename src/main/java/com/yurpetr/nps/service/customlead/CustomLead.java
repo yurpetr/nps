@@ -5,7 +5,6 @@
 
 package com.yurpetr.nps.service.customlead;
 
-
 import com.javastream.entity.Lead;
 
 import lombok.Data;
@@ -16,15 +15,15 @@ import lombok.ToString;
 @ToString
 @EqualsAndHashCode(callSuper = false)
 public class CustomLead extends Lead {
-   private String UF_CRM_1636842898;
-   private String UF_CRM_1636848516;
+   private String opinion;
+   private String point;
 
    public void setOpinion(String opinion) {
-      this.UF_CRM_1636842898 = opinion;
+      this.opinion = opinion;
    }
 
    public void setPoint(String point) {
-      this.UF_CRM_1636848516 = point;
+      this.point = point;
    }
 
    public void setResponsible(String responsible) {

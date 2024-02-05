@@ -7,7 +7,7 @@ package com.yurpetr.nps.service.customlead;
 
 import java.math.BigDecimal;
 
-import com.yurpetr.javastream.uriParamsCreator.UriParamsCreator;
+import com.javastream.uriParamsCreator.UriParamsCreator;
 
 public class CustomUriParamsCreator extends UriParamsCreator {
 
