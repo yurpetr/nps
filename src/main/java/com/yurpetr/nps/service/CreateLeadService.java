@@ -35,6 +35,7 @@ public class CreateLeadService {
    }
 
    private String getPortalUrl() {
+      
       return System.getenv("PORTAL_URL");
    }
 
