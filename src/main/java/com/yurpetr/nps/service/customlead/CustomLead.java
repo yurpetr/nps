@@ -5,7 +5,8 @@
 
 package com.yurpetr.nps.service.customlead;
 
-import com.yurpetr.javastream.entity.Lead;
+
+import com.javastream.entity.Lead;
 
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -27,7 +28,7 @@ public class CustomLead extends Lead {
    }
 
    public void setResponsible(String responsible) {
-      this.setASSIGNED_BY_ID(responsible);
+      this.setAssignedById(responsible);
    }
 
 }

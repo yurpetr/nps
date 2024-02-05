@@ -74,7 +74,6 @@ public class ParamLeadUtils {
 
     private UriParamsCreator initialFieldsForAddLead(Lead lead) throws UnsupportedEncodingException {
         UriParamsCreator params = new UriParamsCreator();
-
         params.put(TITLE, check(lead.getTITLE()));
         params.put(NAME, check(lead.getNAME()));
         params.put(LAST_NAME, check(lead.getLAST_NAME()));
@@ -94,9 +93,6 @@ public class ParamLeadUtils {
         params.put(CURRENCY_ID, check(lead.getCURRENCY_ID()));
         params.put(SOURCE_ID, check(lead.getSOURCE_ID()));
         params.put(OPPORTUNITY, check(lead.getOPPORTUNITY().toString()));
-
-        
-
         return createFinalParams(params, lead);
     }
 
@@ -121,13 +117,10 @@ public class ParamLeadUtils {
         params.put(CURRENCY_ID, check(lead.getCURRENCY_ID()));
         params.put(SOURCE_ID, check(lead.getSOURCE_ID()));
         params.put(OPPORTUNITY, check(lead.getOPPORTUNITY()));
-
-
         return createFinalParams(params, lead);
     }
 
     private UriParamsCreator createFinalParams(UriParamsCreator params, Lead lead) throws UnsupportedEncodingException {
-
         // Multiple parameter of Phone
         if (lead.getPHONE() != null) {
             HashMap<String, String> photos = new MultiFieldsForLeadCreator().getPhotoFields(lead);

@@ -5,7 +5,7 @@
 
 package com.yurpetr.nps.service.customlead;
 
-import com.yurpetr.javastream.Client;
+import com.javastream.Client;
 
 public class CustomClient extends Client {
 

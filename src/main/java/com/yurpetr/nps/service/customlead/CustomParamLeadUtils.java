@@ -8,8 +8,9 @@ package com.yurpetr.nps.service.customlead;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 
-import com.yurpetr.javastream.uriParamsCreator.UriParamsCreator;
-import com.yurpetr.javastream.utils.lead.ParamLeadUtils;
+import com.javastream.uriParamsCreator.UriParamsCreator;
+import com.javastream.utils.lead.ParamLeadUtils;
+
 
 
 public class CustomParamLeadUtils extends ParamLeadUtils {
@@ -23,9 +24,9 @@ public class CustomParamLeadUtils extends ParamLeadUtils {
 
    public UriParamsCreator getParamsForAddLead(CustomLead lead)
          throws UnsupportedEncodingException {
-      UriParamsCreator params = super.getParamsForAddLead(lead);
+      UriParamsCreator params = super.addMethod(lead);
       params.builder.append(AMPERSAND_PATTERN);
-      params.put(UTM_SOURCE, check(lead.getUTM_SOURCE().toString()));
+      params.put(UTM_SOURCE, check(lead.getUtmSource().toString()));
       params.put(UF_CRM_1636842898,
             check(lead.getUF_CRM_1636842898().toString()));
       params.put(UF_CRM_1636848516,

@@ -11,9 +11,9 @@ import java.io.UnsupportedEncodingException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.yurpetr.javastream.service.LeadService;
-import com.yurpetr.javastream.uriParamsCreator.UriParamsCreator;
-import com.yurpetr.javastream.utils.PushRunner;
+import com.javastream.service.LeadService;
+import com.javastream.uriParamsCreator.UriParamsCreator;
+import com.javastream.utils.PushRunner;
 
 public class CustomLeadService extends LeadService {
    private Logger logger = LoggerFactory
@@ -25,7 +25,7 @@ public class CustomLeadService extends LeadService {
    // private final static String UPDATE_METHOD = "crm.lead.update";
 
    public void addNewLead(CustomLead lead) {
-      logger.info("Request: Add a new lead: {}", lead.getID());
+      logger.info("Request: Add a new lead: {}", lead.getId());
       try {
          UriParamsCreator params = new CustomParamLeadUtils()
                .getParamsForAddLead(lead);
