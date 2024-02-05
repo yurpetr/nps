@@ -14,6 +14,7 @@ services:
         tag: npsapp
     environment:
       - BX_TOKEN=${BX_TOKEN}
+      - PORTAL_URL=${PORTAL_URL}
       - DB_PASSWORD=${DB_PASSWORD}
       - H2_ADMIN_PASSWORD=${H2_ADMIN_PASSWORD}
       - KEY_STORE_PASSWORD=${KEY_STORE_PASSWORD}
