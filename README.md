@@ -23,7 +23,11 @@ npm run build && npm run watch
 For run project:
 
 ```
-mvn clean install spring-boot:run
+mvn clean spring-boot:run
+
+OR
+
+call docker\env.bat && mvn clean spring-boot:run -Dspring-boot.run.profiles=windows
 ```
 
 For build and run docker:
