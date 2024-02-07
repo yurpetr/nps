@@ -14,7 +14,7 @@ public class CreateLeadService {
 
       LOGGER.info("Creating lead");
       CustomClient client = new CustomClient(getToken(),
-            getPortalUrl(), 1);
+            getPortalUrl(), getRestId());
       CustomLead lead = new CustomLead();
       lead.setTitle("Оцінка обслуговування");
       lead.setStatusId("NEW");
@@ -35,8 +35,13 @@ public class CreateLeadService {
    }
 
    private String getPortalUrl() {
-      
+
       return System.getenv("PORTAL_URL");
+   }
+
+   private Integer getRestId() {
+
+      return Integer.parseInt(System.getenv("REST_ID"));
    }
 
 }

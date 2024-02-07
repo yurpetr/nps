@@ -25,6 +25,14 @@
 [comment]: 
 [comment]: 
 
+Place certificates in 'docker/conf/'.
+
+Environment variables are located in 'docker/.env.example', rename it to '.env' and fill in own data.
+
+'PORTAL_URL','REST_ID','BX_TOKEN' - from bitrix24 inbound webhook 'https://{PORTAL_URL}/rest/{REST_ID}/{BX_TOKEN}/'
+
+In 'com.yurpetr.nps.service.SetupDataLoader' change admin password, encrypted with BCryptPasswordEncoder.
+Test class 'com.yurpetr.nps.PasswordGenerator' do it for you
 
 Preparing
 
