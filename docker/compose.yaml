@@ -1,7 +1,12 @@
 version: "3.9"
 services:
   npsapp:
-    build: .
+    build:
+      context: .
+      dockerfile_inline: |
+        FROM tomcat:9
+        EXPOSE 8080 8443 9092
+        COPY ROOT.war /usr/local/tomcat/webapps/
     image: npsapp
     hostname: nps
     container_name: npsapp
@@ -23,7 +28,21 @@ services:
       - HTTPS_PORT=${HTTPS_PORT}
       - H2_PORT=${H2_PORT}
     volumes:
-      - ./db:/tmp/db
+      - type: bind
+        source: ../db
+        target: /tmp/db
+      - type: bind
+        source: ./conf/ca_bundle.crt
+        target: /usr/local/tomcat/conf/ca_bundle.crt
+      - type: bind
+        source: ./conf/certificate.crt
+        target: /usr/local/tomcat/conf/certificate.crt
+      - type: bind
+        source: ./conf/private.key
+        target: /usr/local/tomcat/conf/private.key
+      - type: bind
+        source: ./conf/server.xml
+        target: /usr/local/tomcat/conf/server.xml
     ports:
       - ${HTTP_PORT}:8080
       - ${HTTPS_PORT}:8443

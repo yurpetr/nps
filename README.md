@@ -3,7 +3,7 @@ Place certificates in 'docker/conf/'.
 
 Environment variables are located in 'docker/.env.example', rename it to '.env' and fill in own data.
 
-'PORTAL_URL','REST_ID','BX_TOKEN' - from bitrix24 inbound webhook 'https://{PORTAL_URL}/rest/{REST_ID}/{BX_TOKEN}/'
+'PORTAL_URL', 'REST_ID', 'BX_TOKEN' - from bitrix24 inbound webhook 'https://{PORTAL_URL}/rest/{REST_ID}/{BX_TOKEN}/'
 
 In 'com.yurpetr.nps.service.SetupDataLoader' change admin password, encrypted with BCryptPasswordEncoder.
 Test class 'com.yurpetr.nps.PasswordGenerator' do it for you
@@ -34,8 +34,9 @@ For build and run docker:
 
 ```
 mvn clean verify   OR   mvn clean package -Prelease
+cd docker
 cp ../target/nps-{version}.war.original ./ROOT.war
-tar -czh . | docker build -t npsapp -
+docker image rm npsapp
 docker compose up -d
 ```
 
