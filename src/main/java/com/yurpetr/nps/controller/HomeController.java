@@ -67,18 +67,6 @@ public class HomeController {
 
    }
 
-   /*
-    * @RequestMapping(value = "/justdoit") public String
-    * doStuffMethod(
-    * @RequestParam(value = "id", required = false) String id,
-    * @RequestParam(value = "point", required = false) String point) {
-    * // CreateLeadService service = new CreateLeadService(); //
-    * service.createLead(id, point); System.out.println("Success");
-    * System.out.println("Button pressed: " + id);
-    * System.out.println("Point of sale: " + point); return
-    * "congrats"; // return "redirect:/"; }
-    */
-
    @PostMapping("/justdoit")
    public String doStuffMethod(@RequestParam("id") String id,
          @RequestParam("pos") String point) {

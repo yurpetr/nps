@@ -15,16 +15,15 @@ import org.springframework.stereotype.Service;
 
 import com.yurpetr.nps.model.Role;
 import com.yurpetr.nps.model.User;
-import com.yurpetr.nps.repo.UsersRepository;
+import com.yurpetr.nps.repo.UserRepository;
 
 @Service
 public class UserServiceImpl implements UserService {
 
    @Autowired
-   private UsersRepository usersRepo;
+   UserRepository usersRepo;
 
-   @Autowired
-   public UserServiceImpl(UsersRepository usersRepo) {
+   public UserServiceImpl(UserRepository usersRepo) {
       super();
       this.usersRepo = usersRepo;
    }

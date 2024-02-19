@@ -8,18 +8,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.yurpetr.nps.model.User;
-import com.yurpetr.nps.repo.UsersRepository;
+import com.yurpetr.nps.repo.UserRepository;
 
 @Service
 public class UsersService implements IUser {
 
-	UsersRepository usersRepo;
+	@Autowired
+	UserRepository usersRepo;
 
 	@Autowired
 	private PasswordEncoder passwordEncoder;
 
-	@Autowired
-	public UsersService(UsersRepository usersRepo) {
+	public UsersService(UserRepository usersRepo) {
 		this.usersRepo = usersRepo;
 	}
 

@@ -18,7 +18,7 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.yurpetr.nps.model.Role;
 import com.yurpetr.nps.model.User;
-import com.yurpetr.nps.repo.RolesRepository;
+import com.yurpetr.nps.repo.RoleRepository;
 import com.yurpetr.nps.service.UserNotFoundException;
 import com.yurpetr.nps.service.UsersService;
 
@@ -30,13 +30,13 @@ public class TableController {
    UsersService usersService;
 
    @Autowired
-   RolesRepository rolesRepository;
+   RoleRepository roleRepository;
 
    @GetMapping("/addUserForm")
    public ModelAndView addUserForm() {
       ModelAndView mav = new ModelAndView("add-user-form");
       User newUser = new User();
-      Collection<Role> roles = rolesRepository.findAll();
+      Collection<Role> roles = roleRepository.findAll();
       newUser.setRoles(roles);
       mav.addObject("user", newUser);
       return mav;
@@ -70,7 +70,7 @@ public class TableController {
                   "Пользователь " + id + " не найден!"));
       if (!usr.getLogin().equalsIgnoreCase("admin")) {
          mav = new ModelAndView("edit-user-form");
-         Collection<Role> roles = rolesRepository.findAll();
+         Collection<Role> roles = roleRepository.findAll();
          mav.addObject("roles", roles);
          mav.addObject("user", usr);
       } else {

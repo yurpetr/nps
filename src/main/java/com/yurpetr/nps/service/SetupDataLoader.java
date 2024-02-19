@@ -11,8 +11,8 @@ import org.springframework.stereotype.Component;
 
 import com.yurpetr.nps.model.Role;
 import com.yurpetr.nps.model.User;
-import com.yurpetr.nps.repo.RolesRepository;
-import com.yurpetr.nps.repo.UsersRepository;
+import com.yurpetr.nps.repo.RoleRepository;
+import com.yurpetr.nps.repo.UserRepository;
 
 @Component
 public class SetupDataLoader
@@ -21,10 +21,10 @@ public class SetupDataLoader
    boolean alreadySetup = false;
 
    @Autowired
-   private UsersRepository userRepository;
+   private UserRepository userRepository;
 
    @Autowired
-   private RolesRepository roleRepository;
+   private RoleRepository roleRepository;
 
    @Override
    @Transactional
