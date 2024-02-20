@@ -28,6 +28,8 @@ mvn clean spring-boot:run
 OR
 
 call docker\env.bat && mvn clean spring-boot:run -Dspring-boot.run.profiles=windows
+export $(xargs < docker/.env) && mvn clean spring-boot:run -Dspring-boot.run.profiles=bash
+. (sed 's/^/export /' docker/.env | psub) && mvn clean spring-boot:run -Dspring-boot.run.profiles=fish
 ```
 
 For build and run docker:

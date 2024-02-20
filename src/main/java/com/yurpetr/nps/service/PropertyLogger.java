@@ -11,7 +11,6 @@ import org.springframework.core.env.AbstractEnvironment;
 import org.springframework.core.env.EnumerablePropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.core.env.MutablePropertySources;
-import org.springframework.stereotype.Component;
 
 // @Component
 public class PropertyLogger {
