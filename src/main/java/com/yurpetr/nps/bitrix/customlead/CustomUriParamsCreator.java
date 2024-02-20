@@ -1,4 +1,4 @@
-package com.yurpetr.nps.service.customlead;
+package com.yurpetr.nps.bitrix.customlead;
 
 import java.math.BigDecimal;
 

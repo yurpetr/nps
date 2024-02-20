@@ -9,7 +9,7 @@
 </head>
 <body class="bgimage">
 	<div class="flex">
-		<div onclick="location.href='/logoutpage';"
+		<div th:onclick="|window.location.href='/logoutpage'|"
 			style="width: 10px; height: 20px; cursor: pointer">&nbsp;</div>
 		<div class="container mx-auto">
 			<div class="flex h-screen justify-center items-center">
@@ -18,16 +18,16 @@
 						<h1 class="callToRating text-center mb-8 leading-loose">Оцінка
 							Магазину</h1>
 						<div class="grid grid-cols-10 gap-3">
-							<form th:replace="inputs :: input(1,${pos})"></form>
-							<form th:replace="inputs :: input(2,${pos})"></form>
-							<form th:replace="inputs :: input(3,${pos})"></form>
-							<form th:replace="inputs :: input(4,${pos})"></form>
-							<form th:replace="inputs :: input(5,${pos})"></form>
-							<form th:replace="inputs :: input(6,${pos})"></form>
-							<form th:replace="inputs :: input(7,${pos})"></form>
-							<form th:replace="inputs :: input(8,${pos})"></form>
-							<form th:replace="inputs :: input(9,${pos})"></form>
-							<form th:replace="inputs :: input(10,${pos})"></form>
+							<form th:replace="~{inputs :: input(1,${pos})}"></form>
+							<form th:replace="~{inputs :: input(2,${pos})}"></form>
+							<form th:replace="~{inputs :: input(3,${pos})}"></form>
+							<form th:replace="~{inputs :: input(4,${pos})}"></form>
+							<form th:replace="~{inputs :: input(5,${pos})}"></form>
+							<form th:replace="~{inputs :: input(6,${pos})}"></form>
+							<form th:replace="~{inputs :: input(7,${pos})}"></form>
+							<form th:replace="~{inputs :: input(8,${pos})}"></form>
+							<form th:replace="~{inputs :: input(9,${pos})}"></form>
+							<form th:replace="~{inputs :: input(10,${pos})}"></form>
 						</div>
 					</div>
 				</div>

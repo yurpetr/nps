@@ -16,15 +16,17 @@ import org.springframework.security.web.authentication.rememberme.JdbcTokenRepos
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
-import com.yurpetr.nps.repo.UsersRepository;
+import com.yurpetr.nps.repo.UserRepository;
 import com.yurpetr.nps.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+public class WebSecurityConfig
+extends WebSecurityConfigurerAdapter
+{
    private static final String[] GET_PUBLIC_URLS = { "/login",
          "/css/**", "/fonts/**", "/js/**", "/webjars/**",
-         "/nps.webmanifest" };
+         "/nps.webmanifest", "/favicon.ico", "/robots.txt" };
    private static final String[] POST_PUBLIC_URLS = { "/home",
          "/logout", "/logoutpage", "/password_reset" };
 
@@ -41,18 +43,19 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             .antMatchers("/h2/**").permitAll()
             .antMatchers("/h2-console/**").permitAll()
             .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
-            .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS)
-            .permitAll().antMatchers("/admin**").hasAnyRole("ADMIN")
-            .anyRequest().authenticated())
-            .formLogin(login -> login.loginPage("/login").permitAll()
-                  .defaultSuccessUrl("/")
-                  .failureUrl("/login?error=true"))
-            .logout(logout -> logout
-                  .logoutRequestMatcher(
-                        new AntPathRequestMatcher("/logout"))
-                  .permitAll().logoutSuccessUrl("/"))
-            .rememberMe(me -> me
-                  .tokenRepository(persistentTokenRepository()));
+            .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
+            .antMatchers("/admin**").hasAnyRole("ADMIN")
+      		.antMatchers("/users**").hasAnyRole("ADMIN")
+      		.antMatchers("/justdoit**").hasAnyRole("USER")
+      		.anyRequest().authenticated())
+          .formLogin(login -> login.loginPage("/login").permitAll()
+            .defaultSuccessUrl("/")
+            .failureUrl("/login?error=true"))
+          .logout(logout -> logout
+            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+            .permitAll().logoutSuccessUrl("/"))
+          .rememberMe(me -> me
+            .tokenRepository(persistentTokenRepository()));
       http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
       http.headers(headers -> headers.frameOptions().sameOrigin());
 
@@ -80,11 +83,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
    }
 
    @Autowired
-   private UsersRepository usersRepository;
+   private UserRepository userRepository;
 
+   @Override
    @Bean
    protected UserDetailsService userDetailsService() {
-      return new UserServiceImpl(usersRepository);
+      return new UserServiceImpl(userRepository);
    }
 
 }

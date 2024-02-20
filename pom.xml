@@ -11,7 +11,7 @@
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.21-RC</version>
+	<version>0.0.22-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
@@ -21,6 +21,13 @@
 		<frontend-maven-plugin.nodeVersion>v14.18.1</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>6.14.15</frontend-maven-plugin.npmVersion>
 		<log4j2.version>2.22.1</log4j2.version>
+		<h2.version>2.2.224</h2.version>
+		<thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
+		<thymeleaf-extras-springsecurity.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity.version>
+		<gson.version>2.10.1</gson.version>
+		<commons-lang3.version>3.14.0</commons-lang3.version>
+		<!--<hibernate.version>6.4.4.Final</hibernate.version>
+		<flyway.version>10.8.1</flyway.version>-->
 	</properties>
 	<repositories>
 		<repository>
@@ -66,7 +73,6 @@
 		<dependency>
 			<groupId>org.projectlombok</groupId>
 			<artifactId>lombok</artifactId>
-			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>javax.validation</groupId>
@@ -76,9 +82,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
-		<!-- <dependency> <groupId>com.h2database</groupId>
-		<artifactId>h2</artifactId> 
-			<scope>runtime</scope> </dependency> -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
@@ -95,11 +98,6 @@
 			<version>v2022.3</version>
 		</dependency>
 		<dependency>
-			<groupId>com.google.code.gson</groupId>
-			<artifactId>gson</artifactId>
-			<version>2.10.1</version>
-		</dependency>
-		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20240205</version>
@@ -109,15 +107,8 @@
 			<artifactId>httpclient-osgi</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-			<version>3.14.0</version>
-		</dependency>
-		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
-			<version>2.2.224</version>
-			<!-- <scope>runtime</scope> -->
 		</dependency>
 	</dependencies>
 	<build>

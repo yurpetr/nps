@@ -1,10 +1,10 @@
-package com.yurpetr.nps.service;
+package com.yurpetr.nps.bitrix;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.yurpetr.nps.service.customlead.CustomClient;
-import com.yurpetr.nps.service.customlead.CustomLead;
+import com.yurpetr.nps.bitrix.customlead.CustomClient;
+import com.yurpetr.nps.bitrix.customlead.CustomLead;
 
 public class CreateLeadService {
    private static final Logger LOGGER = LoggerFactory
