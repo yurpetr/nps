@@ -1,4 +1,4 @@
-package com.yurpetr.nps.service.customlead;
+package com.yurpetr.nps.bitrix.customlead;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;

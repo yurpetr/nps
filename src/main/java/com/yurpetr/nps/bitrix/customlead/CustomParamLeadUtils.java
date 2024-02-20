@@ -1,7 +1,8 @@
-package com.yurpetr.nps.service.customlead;
+package com.yurpetr.nps.bitrix.customlead;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.nio.charset.StandardCharsets;
 
 import com.javastream.uriParamsCreator.UriParamsCreator;
 import com.javastream.utils.lead.ParamLeadUtils;
@@ -25,17 +26,12 @@ public class CustomParamLeadUtils extends ParamLeadUtils {
       return params;
    }
 
-   private String check(String field) {
+   private String check(String field) throws UnsupportedEncodingException {
       if (field == null) {
          return SPACE_PARAM;
       } else {
-         return URLEncoder.encode(field);
+         return URLEncoder.encode(field, StandardCharsets.UTF_8.toString());
       }
    }
 
 }
-/*
- * public UriParamsCreator getParamsForAddLead(Lead lead) throws
- * UnsupportedEncodingException { UriParamsCreator params =
- * initialFieldsForAddLead(lead); params.build(); return params; }
- */

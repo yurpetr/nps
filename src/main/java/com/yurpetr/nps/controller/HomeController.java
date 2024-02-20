@@ -9,74 +9,44 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
-import com.yurpetr.nps.service.CreateLeadService;
 import com.yurpetr.nps.service.UsersService;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
-   private static final Logger LOGGER = LoggerFactory
-         .getLogger(HomeController.class);
-  
-   @Autowired
-   UsersService usersService;
+	private static final Logger LOGGER = LoggerFactory.getLogger(HomeController.class);
 
-   @GetMapping
-   public ModelAndView home(Principal principal) {
-      if (principal != null) {
-         Authentication authentication = SecurityContextHolder
-               .getContext().getAuthentication();
-         if (authentication.getAuthorities().stream().anyMatch(
-               r -> r.getAuthority().equals("ROLE_ADMIN"))) {
-            ModelAndView mav = new ModelAndView(
-                  new RedirectView("/admin"));
-            return mav;
-         }
-         if (authentication.getAuthorities().stream().anyMatch(
-               r -> r.getAuthority().equals("ROLE_POWERBI"))) {
-            ModelAndView mav = new ModelAndView("powerbi");
-            mav.addObject("url",
-                  usersService.findByLogin(authentication.getName())
-                        .get().getPowerBiUrl());
-            return mav;
-         }
+	@Autowired
+	UsersService usersService;
 
-         ModelAndView mav = new ModelAndView("nps");
-         mav.addObject("pos",
-               usersService.findByLogin(authentication.getName())
-                     .get().getPointOfSale());
-         return mav;
+	@GetMapping("/")
+	public ModelAndView home(Principal principal) {
+		ModelAndView mav = new ModelAndView();
+		if (principal != null) {
+			Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+			if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_ADMIN"))) {
+				LOGGER.info("Admin logined");
+				mav.setViewName("admin");
+				mav.addObject("users", usersService.getAllUsers());
+				return mav;
+			}
+			if (authentication.getAuthorities().stream().anyMatch(r -> r.getAuthority().equals("ROLE_POWERBI"))) {
+				LOGGER.info("PowerBI user logined");
+				mav.setViewName("powerbi");
+				mav.addObject("url", usersService.findByLogin(authentication.getName()).get().getPowerBiUrl());
+				return mav;
+			}
+			LOGGER.info("User logined");
+			mav.setViewName("nps");
+			mav.addObject("pos", usersService.findByLogin(authentication.getName()).get().getPointOfSale());
+			return mav;
 
-      }
-      ModelAndView mav = new ModelAndView(new RedirectView("/login"));
-      return mav;
-   }
+		}
+		LOGGER.info("Not authenticated");
+		mav.setViewName("login");
+		return mav;
 
-   @PostMapping("/")
-   public void submit(@RequestParam String id, String point) {
-
-      CreateLeadService service = new CreateLeadService();
-      service.createLead(id, point);
-
-   }
-
-   @PostMapping("/justdoit")
-   public String doStuffMethod(@RequestParam("id") String id,
-         @RequestParam("pos") String point) {
-      CreateLeadService service = new CreateLeadService();
-      service.createLead(id, point);
-      LOGGER.info("Success");
-      LOGGER.info("Button pressed: " + id);
-      LOGGER.info("Point of sale: " + point);
-
-      return "congrats";
-      // return "redirect:/";
-   }
+	}
 }

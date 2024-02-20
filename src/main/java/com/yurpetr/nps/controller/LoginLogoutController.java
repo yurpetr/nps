@@ -9,24 +9,22 @@ import org.springframework.security.web.authentication.logout.SecurityContextLog
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.view.RedirectView;
 
 @Controller
 public class LoginLogoutController {
 
    @GetMapping("/login")
    public ModelAndView login() {
-	   ModelAndView mav = new ModelAndView("login");
-		return mav;
+		return new ModelAndView("login");
    }
 
    @GetMapping("/logoutpage")
-   public String logoutPage() {
-      return "logoutpage";
+   public ModelAndView logoutPage() {
+      return new ModelAndView("logoutpage");
    }
 
    @GetMapping("/logout")
-   public String logout(HttpServletRequest request,
+   public ModelAndView logout(HttpServletRequest request,
          HttpServletResponse response) {
       Authentication auth = SecurityContextHolder.getContext()
             .getAuthentication();
@@ -34,6 +32,6 @@ public class LoginLogoutController {
          new SecurityContextLogoutHandler().logout(request, response,
                auth);
       }
-      return "redirect:/";
+      return new ModelAndView("redirect:/");
    }
 }
