@@ -12,6 +12,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
@@ -21,9 +22,7 @@ import com.yurpetr.nps.service.UserServiceImpl;
 
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig
-extends WebSecurityConfigurerAdapter
-{
+public class WebSecurityConfig {
    private static final String[] GET_PUBLIC_URLS = { "/login",
          "/css/**", "/fonts/**", "/js/**", "/webjars/**",
          "/nps.webmanifest", "/favicon.ico", "/robots.txt" };
@@ -37,8 +36,8 @@ extends WebSecurityConfigurerAdapter
       this.userService = userService;
    }
 
-   @Override
-   protected void configure(HttpSecurity http) throws Exception {
+   @Bean
+   SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
       http.authorizeRequests(requests -> requests
             .antMatchers("/h2/**").permitAll()
             .antMatchers("/h2-console/**").permitAll()
@@ -54,11 +53,13 @@ extends WebSecurityConfigurerAdapter
           .logout(logout -> logout
             .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
             .permitAll().logoutSuccessUrl("/"))
-          .rememberMe(me -> me
-            .tokenRepository(persistentTokenRepository()));
+          .rememberMe(me -> {
+        	  me.userDetailsService(userService);
+        	  me.tokenRepository(persistentTokenRepository());
+            });
       http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
       http.headers(headers -> headers.frameOptions().sameOrigin());
-
+      return http.build();
    }
 
    @Autowired
@@ -85,7 +86,6 @@ extends WebSecurityConfigurerAdapter
    @Autowired
    private UserRepository userRepository;
 
-   @Override
    @Bean
    protected UserDetailsService userDetailsService() {
       return new UserServiceImpl(userRepository);
