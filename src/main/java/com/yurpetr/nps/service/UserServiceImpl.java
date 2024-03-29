@@ -4,8 +4,6 @@ import java.util.Collection;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -16,6 +14,8 @@ import org.springframework.stereotype.Service;
 import com.yurpetr.nps.model.Role;
 import com.yurpetr.nps.model.User;
 import com.yurpetr.nps.repo.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class UserServiceImpl implements UserService {

@@ -2,7 +2,7 @@ package com.yurpetr.nps.controller;
 
 import java.util.Collection;
 
-import javax.validation.constraints.Min;
+import jakarta.validation.constraints.Min;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;

@@ -37,27 +37,31 @@ public class WebSecurityConfig {
 
    @Bean
    SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-      http.authorizeRequests(requests -> requests
-            .antMatchers("/h2/**").permitAll()
-            .antMatchers("/h2-console/**").permitAll()
-            .antMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
-            .antMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
-            .antMatchers("/admin**").hasAnyRole("ADMIN")
-      		.antMatchers("/users**").hasAnyRole("ADMIN")
-      		.antMatchers("/justdoit**").hasAnyRole("USER")
-      		.anyRequest().authenticated())
-          .formLogin(login -> login.loginPage("/login").permitAll()
-            .defaultSuccessUrl("/")
-            .failureUrl("/login?error=true"))
-          .logout(logout -> logout
-            .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-            .permitAll().logoutSuccessUrl("/"))
-          .rememberMe(me -> {
-        	  me.userDetailsService(userService);
-        	  me.tokenRepository(persistentTokenRepository());
-            });
-      http.csrf(csrf -> csrf.ignoringAntMatchers("/h2/**"));
-      http.headers(headers -> headers.frameOptions().sameOrigin());
+		http.authorizeHttpRequests(authorizeHttpRequests -> authorizeHttpRequests
+				.requestMatchers("/h2/**").permitAll()
+				.requestMatchers("/h2-console/**").permitAll()
+				.requestMatchers(HttpMethod.GET, GET_PUBLIC_URLS).permitAll()
+				.requestMatchers(HttpMethod.POST, POST_PUBLIC_URLS).permitAll()
+				.requestMatchers("/admin**").hasAnyRole("ADMIN")
+				.requestMatchers("/users**").hasAnyRole("ADMIN")
+				.requestMatchers("/justdoit**").hasAnyRole("USER")
+				.anyRequest().authenticated())
+				.formLogin(login -> login
+						.loginPage("/login").permitAll()
+						.defaultSuccessUrl("/")
+						.failureUrl("/login?error=true"))
+				.logout(logout -> logout
+						.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).permitAll()
+						.logoutSuccessUrl("/"))
+				.rememberMe(me -> {
+					me.userDetailsService(userService);
+					me.tokenRepository(persistentTokenRepository());
+				});
+		http.csrf(csrf -> csrf
+				.ignoringRequestMatchers("/h2/**"));
+		http.headers(headers -> headers
+				.frameOptions(customizer -> customizer
+						.sameOrigin()));
       return http.build();
    }
 

@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>3.2.4</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.22-RC</version>
+	<version>0.0.23-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<properties>
@@ -21,13 +21,7 @@
 		<frontend-maven-plugin.nodeVersion>v14.18.1</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>6.14.15</frontend-maven-plugin.npmVersion>
 		<log4j2.version>2.22.1</log4j2.version>
-		<h2.version>2.2.224</h2.version>
-		<thymeleaf.version>3.1.2.RELEASE</thymeleaf.version>
-		<thymeleaf-extras-springsecurity.version>3.1.2.RELEASE</thymeleaf-extras-springsecurity.version>
-		<gson.version>2.10.1</gson.version>
-		<commons-lang3.version>3.14.0</commons-lang3.version>
-		<!--<hibernate.version>6.4.4.Final</hibernate.version>
-		<flyway.version>10.8.1</flyway.version>-->
+		<lombok.version>1.18.32</lombok.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -75,8 +69,8 @@
 			<artifactId>lombok</artifactId>
 		</dependency>
 		<dependency>
-			<groupId>javax.validation</groupId>
-			<artifactId>validation-api</artifactId>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -105,6 +99,7 @@
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-osgi</artifactId>
+			<version>4.5.14</version>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>

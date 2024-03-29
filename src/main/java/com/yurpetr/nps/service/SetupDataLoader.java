@@ -2,8 +2,6 @@ package com.yurpetr.nps.service;
 
 import java.util.Arrays;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
@@ -13,6 +11,8 @@ import com.yurpetr.nps.model.Role;
 import com.yurpetr.nps.model.User;
 import com.yurpetr.nps.repo.RoleRepository;
 import com.yurpetr.nps.repo.UserRepository;
+
+import jakarta.transaction.Transactional;
 
 @Component
 public class SetupDataLoader
