@@ -1,0 +1,63 @@
+server:
+  port: 8080
+  tomcat:
+    remoteip:
+      protocol-header: x-forwarded-proto
+  forward-headers-strategy: framework
+  ssl:
+    key-store-type: PKCS12
+    key-store: classpath:keystore/npstl.p12
+    key-store-password: ${KEY_STORE_PASSWORD}
+    key-alias: npstl
+    enabled: false
+  error:
+    whitelabel:
+      enabled: false
+spring:
+  thymeleaf:
+    prefix: classpath:/templates/
+    suffix: .html
+    mode: HTML
+  datasource:
+    url: jdbc:h2:file:./db/npsdb
+#    url: jdbc:h2:file:/tmp/db/mydb;AUTO_SERVER=TRUE
+#    url: jdbc:h2:tcp://localhost:1521/file:npsdb
+    driverClassName: org.h2.Driver
+    username: supaadmin
+    password: ${DB_PASSWORD}
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    defer-datasource-initialization: true
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: false
+        show_sql: false
+#        validator:
+#          apply_to_ddl: false
+#        check_nullability: true
+  sql:
+    init:
+      mode: always
+      schema-locations:
+      - classpath:persistent_login_table.sql
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-admin-password: ${H2_ADMIN_PASSWORD_HASH}
+        web-allow-others: true
+      path: /h2
+logging:
+  level:
+    web: debug
+    org:
+      hibernate:
+        sql: info
+        type: info
+      springframework:
+        boot:
+          autoconfigure: error
+      
