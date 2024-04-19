@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <Server port="8005" shutdown="SHUTDOWN">
 	<Listener
 		className="org.apache.catalina.startup.VersionLoggerListener" />
@@ -23,10 +22,11 @@
 	
 	
 		<Connector port="8080" protocol="HTTP/1.1"
-			connectionTimeout="20000" redirectPort="8443" />
+			connectionTimeout="20000" redirectPort="8443"
+			maxParameterCount="1000" />
 		<Connector port="8443"
-			protocol="org.apache.coyote.http11.Http11AprProtocol"
-			maxThreads="150" SSLEnabled="true">
+			protocol="org.apache.coyote.http11.Http11NioProtocol"
+			maxThreads="150" SSLEnabled="true" maxParameterCount="1000">
 			<UpgradeProtocol
 				className="org.apache.coyote.http2.Http2Protocol" />
 			<SSLHostConfig>
@@ -35,7 +35,7 @@
 					certificateChainFile="conf/ca_bundle.crt" type="RSA" />
 			</SSLHostConfig>
 		</Connector>
-		
+	
 		
 		<Engine name="Catalina" defaultHost="localhost">
 			<Realm className="org.apache.catalina.realm.LockOutRealm">

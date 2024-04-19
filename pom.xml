@@ -11,11 +11,12 @@
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.24-RC</version>
+	<version>0.0.25-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<packaging>war</packaging>
 	<properties>
+		<start-class>com.yurpetr.nps.NpsApplication</start-class>
 		<java.version>21</java.version>
 		<maven.compiler.release>${java.version}</maven.compiler.release>
 		<frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
@@ -111,10 +112,17 @@
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient-osgi</artifactId>
 			<version>4.5.14</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>com.h2database</groupId>
 			<artifactId>h2</artifactId>
+			<scope>compile</scope>
 		</dependency>
 		<!--		<dependency>
 			<groupId>com.giffing.bucket4j.spring.boot.starter</groupId>
@@ -164,6 +172,11 @@
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
+					<artifactId>maven-jar-plugin</artifactId>
+					<version>3.4.0</version>
+				</plugin>
+				<plugin>
+					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.13.0</version>
 				</plugin>
@@ -176,6 +189,17 @@
 					<groupId>org.springframework.boot</groupId>
 					<artifactId>spring-boot-maven-plugin</artifactId>
 					<configuration>
+						<mainClass>com.yurpetr.nps.NpsApplication</mainClass>
+						<image>
+							<buildpacks>
+								<buildpack>paketo-buildpacks/ca-certificates</buildpack>
+								<buildpack>gcr.io/paketo-buildpacks/adoptium</buildpack>
+								<buildpack>paketo-buildpacks/syft</buildpack>
+								<buildpack>paketo-buildpacks/executable-jar</buildpack>
+								<buildpack>paketo-buildpacks/dist-zip</buildpack>
+								<buildpack>paketo-buildpacks/spring-boot</buildpack>
+							</buildpacks>
+						</image>
 						<excludes>
 							<exclude>
 								<groupId>org.projectlombok</groupId>
@@ -183,6 +207,13 @@
 							</exclude>
 						</excludes>
 					</configuration>
+					<executions>
+						<execution>
+							<goals>
+								<goal>repackage</goal>
+							</goals>
+						</execution>
+					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
@@ -204,6 +235,16 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<artifactId>maven-jar-plugin</artifactId>
+				<configuration>
+					<archive>
+						<manifest>
+							<mainClass>com.yurpetr.nps.NpsApplication</mainClass>
+						</manifest>
+					</archive>
+				</configuration>
 			</plugin>
 			<plugin>
 				<groupId>com.github.eirslett</groupId>

@@ -21,19 +21,19 @@ public class CustomPushRunner {
    private final static String SLASH_PATTERN = "/";
    private final static String REST_FIELD = "rest";
 
-   public static void post(UriParamsCreator params, String metod) {
+   public static void post(UriParamsCreator params, String method) {
       HttpClient httpClient = HttpClientBuilder.create().build();
 
       String url = HTTPS_ADDRESS + getAccount() + SLASH_PATTERN
             + REST_FIELD + SLASH_PATTERN + getRestID() + SLASH_PATTERN
-            + getToken() + SLASH_PATTERN + metod + params;
+            + getToken() + SLASH_PATTERN + method + params;
 
       HttpPost request = new HttpPost(url);
       request.addHeader("content-type", "application/json");
 
       try {
          HttpResponse response = httpClient.execute(request);
-         logger.info("Request {}, status of response: {}", metod,
+         logger.info("Request {}, status of response: {}", method,
                response.getStatusLine().getStatusCode());
 
          JSONObject jsonObj = new JSONObject(
@@ -45,7 +45,7 @@ public class CustomPushRunner {
       } catch (Exception e) {
          logger.error(
                "An error occurred while getting HttpResponse, method: {}",
-               metod, e);
+               method, e);
       }
 
    }

@@ -3,3 +3,10 @@ spring:
     cache: false
   datasource:
     url: jdbc:h2:mem:npsdb
+  h2:
+    console:
+      enabled: true
+      settings:
+        web-admin-password: ${H2_ADMIN_PASSWORD_HASH}
+        web-allow-others: true
+      path: /h2    

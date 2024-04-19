@@ -1,13 +1,20 @@
-version: "3.9"
 services:
   npsapp:
     build:
       context: .
       dockerfile_inline: |
-        FROM tomcat:9
+        FROM tomcat:10
         EXPOSE 8080 8443 9092
         COPY ROOT.war /usr/local/tomcat/webapps/
     image: npsapp
+    mem_limit: 1024M
+    mem_reservation: 128M
+#    deploy:
+#      resources:
+#        limits:
+#          memory: 1024M
+#        reservations:
+#          memory: 128M
     hostname: nps
     container_name: npsapp
     restart: always
@@ -41,7 +48,7 @@ services:
         source: ./conf/private.key
         target: /usr/local/tomcat/conf/private.key
       - type: bind
-        source: ./conf/server.xml
+        source: ./conf/server10.xml
         target: /usr/local/tomcat/conf/server.xml
     ports:
       - ${HTTP_PORT}:8080
