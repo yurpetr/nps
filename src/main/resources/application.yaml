@@ -45,7 +45,7 @@ spring:
       - classpath:persistent_login_table.sql
 logging:
   file:
-    name: /var/logs/npsapp/npsapp.log
+    name: logs/npsapp/npsapp.log
   logback:
     rollingpolicy:
       max-file-size: 10MB
