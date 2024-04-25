@@ -44,6 +44,12 @@ spring:
       schema-locations:
       - classpath:persistent_login_table.sql
 logging:
+  file:
+    name: /var/logs/npsapp/npsapp.log
+  logback:
+    rollingpolicy:
+      max-file-size: 10MB
+      max-history: 20      
   level:
     web: debug
     org:
@@ -53,4 +59,3 @@ logging:
       springframework:
         boot:
           autoconfigure: error
-      

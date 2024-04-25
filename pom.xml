@@ -6,12 +6,12 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.4</version>
+		<version>3.2.5</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.yurpetr</groupId>
 	<artifactId>nps</artifactId>
-	<version>0.0.25-RC</version>
+	<version>0.0.26-RC</version>
 	<name>nps</name>
 	<description>NPS for Trade-Liga CRM</description>
 	<packaging>war</packaging>
@@ -22,7 +22,7 @@
 		<frontend-maven-plugin.version>1.15.0</frontend-maven-plugin.version>
 		<frontend-maven-plugin.nodeVersion>v14.18.1</frontend-maven-plugin.nodeVersion>
 		<frontend-maven-plugin.npmVersion>6.14.15</frontend-maven-plugin.npmVersion>
-		<log4j2.version>2.22.1</log4j2.version>
+		<log4j2.version>2.23.1</log4j2.version>
 		<lombok.version>1.18.32</lombok.version>
 	</properties>
 	<repositories>
@@ -82,6 +82,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin.external.google</groupId>
+					<artifactId>android-json</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -173,7 +179,7 @@
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-jar-plugin</artifactId>
-					<version>3.4.0</version>
+					<version>3.4.1</version>
 				</plugin>
 				<plugin>
 					<groupId>org.apache.maven.plugins</groupId>
@@ -235,6 +241,21 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>versions-maven-plugin</artifactId>
+				<configuration>
+					<ruleSet>
+						<ignoreVersions>
+							<ignoreVersion>
+								<type>regex</type>
+								<version>
+									(.+-SNAPSHOT|.+-M\d)|(.+[-\.]([Aa]lpha|[Bb]eta|[Rr][Cc]|[Cc][Rr]|[Ee][Aa]).*)</version>
+							</ignoreVersion>
+						</ignoreVersions>
+					</ruleSet>
+				</configuration>
 			</plugin>
 			<plugin>
 				<artifactId>maven-jar-plugin</artifactId>

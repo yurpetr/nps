@@ -12,3 +12,7 @@ spring:
         web-admin-password: ${H2_ADMIN_PASSWORD_HASH}
         web-allow-others: true
       path: /h2
+logging:
+  file:
+    name: c:/temp/npsapp/npsapp.log     
+   
